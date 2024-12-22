@@ -1,0 +1,349 @@
+/*fonts*/
+
+@font-face {
+  font-family: Tomorrow;
+  src: url('/fonts/Tomorrow-Light.ttf');
+}
+
+@font-face {
+  font-family: Tomorrow;
+  src: url('/fonts/Tomorrow-Medium.ttf');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Tomorrow;
+  src: url('/fonts/Tomorrow-LightItalic.ttf');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Noto Sans;
+  src: url('/fonts/Tomorrow-MediumItalic.ttf');
+  font-style: italic;
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Noto Sans Japanese;
+  src: url('/fonts/NotoSansJP-Light.ttf');
+}
+
+@font-face {
+  font-family: Noto Sans Japanese;
+  src: url('/fonts/NotoSansJP-SemiBold.ttf');
+  font-weight: bold;
+}
+
+
+/*layout css*/
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: 'Tomorrow', 'Noto Sans Japanese', sans-serif;
+  font-size: 0.95em;
+  margin: 0;
+  background-color: #0a1114;
+  color: #e2ede6;
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* below this line is CSS for the layout */
+
+/* the "container" is what wraps your entire website */
+/* if you want something (like the header) to be Wider than the other elements, you will need to move that div outside of the container */
+
+#container {
+  max-width: 800px;
+  /* this is the width of your layout! */
+  /* if you change the above value, scroll to the bottom and change the media query according to the comment! */
+  margin: auto;
+  /* this centers the entire page */
+}
+
+#header {
+  width: 100%;
+  height: 50px;
+}
+
+/* the area below is for all links on your page EXCEPT for the navigation */
+a {
+  color: #58c4aa;
+  font-weight: bold;
+}
+
+#flex {
+  display: flex;
+}
+
+aside {
+  background-color: #19373e;
+  width: 220px;
+  font-size: smaller;
+  /* this makes the sidebar text slightly smaller */
+}
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+}
+
+/* this is the color of the main content area, between the sidebars! */
+main
+{
+  background-color: #1a2b32;
+  flex: 1;
+  padding: 20px;
+  line-height: 1.5em;
+}
+
+footer {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  text-align: right;
+  font-size: smaller;
+}
+
+h1 {
+  font-size: 22px;
+  padding: 10px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 18px;
+  color: #FAD02C;
+}
+
+h3 {
+  font-size: 16px;
+  color: #FAD02C;
+}
+
+ul {
+  padding-left: 1em;
+}
+
+.crisp { 
+  image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+  image-rendering: -moz-crisp-edges;          /* Firefox                        */
+  image-rendering: -o-crisp-edges;            /* Opera                          */
+  image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+  image-rendering: pixelated;                 /* Universal support since 2021   */
+  image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+  -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+}
+
+/* Zonelets styles */
+
+.right {
+  float: right;
+  margin-left: 1em;
+}
+
+.left {
+  float: left;
+  margin-right: 1em;
+}
+
+.center {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+@media only screen and (min-width: 600px) {
+  .small {
+    max-width: 60%;
+    height: auto;
+  }
+}
+
+.caption {
+  margin-top: 0;
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+#postlistdiv ul {
+  line-height: 1.6em;
+  padding: 0;
+  list-style-type: none;
+}
+
+#recentpostlistdiv ul {
+  line-height: 1.6em;
+  padding-left: 0;
+  padding-bottom: 10px;
+  list-style-type: none;
+}
+
+.moreposts {
+  font-size: 0.8em;
+  margin-top: 0.2em;
+}
+
+#nextprev {
+  text-align: center;
+  margin-top: 1.4em;
+}
+
+/* this is just a cool box, it's the darker colored one */
+.box {
+  background-color: #1a2b32;
+  border: 1px solid #58c4aa;
+  padding: 8px;
+  text-align: center;
+}
+
+.box a {
+  color: #fff;
+  text-decoration:none
+}
+
+.mainbox {
+  background-color: #19373e;
+  border: 1px solid #58c4aa;
+  padding: 8px;
+}
+
+.yellownote {
+  position: relative;
+  color: #1a2b32;
+  background-color: #ffeca0;
+  padding: 1px 15px;
+  margin: 20px 0px;
+  text-align: left;
+}
+
+.yellownote:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-width: 0 40px 40px 0;
+  border-style: solid;
+  border-color: #FAD02C #1a2b32;
+}
+
+.bluenote {
+  position: relative;
+  color: #1a2b32;
+  background-color: #93e7d4;
+  padding: 1px 15px;
+  margin: 20px 0px;
+  text-align: left;
+}
+
+.bluenote:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-width: 0 40px 40px 0;
+  border-style: solid;
+  border-color: #58c4aa #1a2b32;
+}
+
+.yellownote h1,
+.yellownote h2,
+.yellownote h3,
+.yellownote a,
+.bluenote h1,
+.bluenote h2,
+.bluenote h3,
+.bluenote a {
+  color: #1a2b32;
+}
+
+.colourgrid {
+  display:grid;
+  grid-template-columns:33.33% 33.33% 33.33%;
+}
+
+.colourboxlight {
+  text-align:center;
+  color:#FFF;
+  font-size:18px;
+  padding:5%;
+}
+
+.colourboxdark {
+  text-align:center;
+  color:#000;
+  font-size:18px;
+  padding:5%;
+}
+
+.fontbox {
+  font-size:20px;
+  padding:3%;
+  color:#1a2b32;
+  background-color:#e2ede6;
+}
+
+.kamille {
+  position:relative;
+  top:-17px;
+  max-width:180px
+}
+
+#dynamic-link a {
+  color: rgba(246, 204, 14, 0.7);
+  text-decoration: none;
+  transition: color 0.3s ease; /* Smooth transition */
+}
+
+#dynamic-link a:hover {
+  color: rgba(246, 204, 14, 1);
+}
+
+#wip {
+  margin: 10px;
+  padding: 0px 15px;
+  background: linear-gradient(-45deg, rgba(0, 0, 0, 0) 25%, rgba(246, 204, 14, 0.7) 25%, rgba(246, 204, 14, 0.7) 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 75%, rgba(246, 204, 14, 0.7) 75%, rgba(246, 204, 14, 0.7) 100%);
+  background-size: 20px 20px;
+}
+
+.button {
+  width: 88px; 
+  height: 31px; 
+  image-rendering: pixelated;
+}
+
+/* BELOW THIS POINT IS MEDIA QUERY */
+
+/* so you wanna change the width of your page? by default, the container width is 900px. in order to keep things responsive, take your new height, and then subtrack it by 100. use this new number as the "max-width" value below */
+
+@media only screen and (max-width: 700px) {
+  #flex {
+    flex-wrap: wrap;
+  }
+
+  aside {
+    width: 100%;
+  }
+
+  #navbar ul {
+    flex-wrap: wrap;
+  }
+
+  .colourgrid {
+    grid-template-columns:100%;
+  }
+}
