@@ -27,28 +27,39 @@
     // WEBRING LINK
 
     document.addEventListener('DOMContentLoaded', () => {
-        // List of options
+        // List of options with the links
         const options = [
-            "<a href='http://prophetesque.gay' style='color: rgba(246, 204, 14, 0.7); text-decoration: none; transition: color 0.3s ease;' onmouseover='this.style.color='rgba(246, 204, 14, 1)';' onmouseout='this.style.color='rgba(246, 204, 14, 0.7)';'>silas</a>",
-            "<a href='http://littlebird.sh' style='color: rgba(246, 204, 14, 0.7); text-decoration: none; transition: color 0.3s ease;' onmouseover='this.style.color='rgba(246, 204, 14, 1)';' onmouseout='this.style.color='rgba(246, 204, 14, 0.7)';'>wren</a>",
-            "<a href='http://taniyn.quest' style='color: rgba(246, 204, 14, 0.7); text-decoration: none; transition: color 0.3s ease;' onmouseover='this.style.color='rgba(246, 204, 14, 1)';' onmouseout='this.style.color='rgba(246, 204, 14, 0.7)';'>barquq</a>",
-            "<a href='http://binarystar.games' style='color: rgba(246, 204, 14, 0.7); text-decoration: none; transition: color 0.3s ease;' onmouseover='this.style.color='rgba(246, 204, 14, 1)';' onmouseout='this.style.color='rgba(246, 204, 14, 0.7)';'>binary</a>",
-            "<a href='http://mintywyvern.neocities.org' style='color: rgba(246, 204, 14, 0.7); text-decoration: none; transition: color 0.3s ease;' onmouseover='this.style.color='rgba(246, 204, 14, 1)';' onmouseout='this.style.color='rgba(246, 204, 14, 0.7)';'>minty</a>",
-            "<a href='http://melodiccharm.neocities.org' style='color: rgba(246, 204, 14, 0.7); text-decoration: none; transition: color 0.3s ease;' onmouseover='this.style.color='rgba(246, 204, 14, 1)';' onmouseout='this.style.color='rgba(246, 204, 14, 0.7)';'>melodica</a>",
-            "<a href='http://sharkaeopteryx.neocities.org' style='color: rgba(246, 204, 14, 0.7); text-decoration: none; transition: color 0.3s ease;' onmouseover='this.style.color='rgba(246, 204, 14, 1)';' onmouseout='this.style.color='rgba(246, 204, 14, 0.7)';'>shark</a>",
-            "<a href='http://renkotsuban.com' style='color: rgba(246, 204, 14, 0.7); text-decoration: none; transition: color 0.3s ease;' onmouseover='this.style.color='rgba(246, 204, 14, 1)';' onmouseout='this.style.color='rgba(246, 204, 14, 0.7)';'>renkon</a>",
-            "<a href='http://abstractcactus.art' style='color: rgba(246, 204, 14, 0.7); text-decoration: none; transition: color 0.3s ease;' onmouseover='this.style.color='rgba(246, 204, 14, 1)';' onmouseout='this.style.color='rgba(246, 204, 14, 0.7)';'>maja</a>",
-            "<a href='http://jama.neocities.org' style='color: rgba(246, 204, 14, 0.7); text-decoration: none; transition: color 0.3s ease;' onmouseover='this.style.color='rgba(246, 204, 14, 1)';' onmouseout='this.style.color='rgba(246, 204, 14, 0.7)';'>jama</a>",
-            "<a href='http://lilbunny.nekoweb.org' style='color: rgba(246, 204, 14, 0.7); text-decoration: none; transition: color 0.3s ease;' onmouseover='this.style.color='rgba(246, 204, 14, 1)';' onmouseout='this.style.color='rgba(246, 204, 14, 0.7)';'>kay</a>",
+            { name: "silas", url: "https://prophetesque.gay" },
+            { name: "wren", url: "https://littlebird.sh" },
+            { name: "barquq", url: "https://taniyn.quest" },
+            { name: "binary", url: "https://binarystar.games" },
+            { name: "minty", url: "https://mintywyvern.neocities.org" },
+            { name: "melodica", url: "https://melodiccharm.neocities.org" },
+            { name: "shark", url: "https://sharkaeopteryx.neocities.org" },
+            { name: "renkon", url: "https://renkotsuban.com" },
+            { name: "maja", url: "https://abstractcactus.art" },
+            { name: "jama", url: "https://jama.neocities.org" },
+            { name: "kay", url: "https://lilbunny.nekoweb.org" }
         ];
 
         // Select a random option
-        const randomText = options[Math.floor(Math.random() * options.length)];
+        const randomLink = options[Math.floor(Math.random() * options.length)];
+
+        // Function to create link with hover effects
+        function createLink(text, url) {
+            const link = document.createElement('a');
+            link.href = url;
+            link.innerText = text;
+            link.classList.add('webring-link'); // Add a class for styling
+            return link;
+        }
 
         // Update the link
         const h1Element = document.querySelector('#dynamic-link');
         if (h1Element) {
-            h1Element.innerHTML = randomText;
+            const link = createLink(randomLink.name, randomLink.url);
+            h1Element.innerHTML = ''; // Clear previous content
+            h1Element.appendChild(link);
         }
     });
 

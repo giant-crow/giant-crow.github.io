@@ -1,87 +1,72 @@
 // <![CDATA[
   let speed;
   let drops;
-  const color = "#1a2b32d9"; // Drop color
+  let raindropContainer;
+  const color = "#1a2b32"; // Drop color
   const raindrops = [];
-
-  function updateAnimationSettings() {
-    // Check if the screen width is less than or equal to 700px (mobile)
-    if (window.matchMedia("(max-width: 700px)").matches) {
-      speed = 2;  // Overall speed multiplier (higher value for faster rain)
-      drops = 50; // Number of drops for mobile
-    } else {
-      speed = 2;  // Same speed for desktop, or adjust as needed
-      drops = 150; // Number of drops for desktop
-    }
-  }
-
-  // Initialize the animation settings based on the current screen size
-  updateAnimationSettings();
-
   let rainActive = false;
   let rainPaused = window.matchMedia("(prefers-reduced-motion: reduce)").matches; // Check if user prefers reduced motion
+  const mobileBreakpoint = 700; // Constant for mobile breakpoint
 
+  let resizeTimeout;
+  let rainToggleButton; // Removed redundant creation of button here
+  
+  // Update animation settings based on screen size
+  function updateAnimationSettings() {
+    const isMobile = window.matchMedia(`(max-width: ${mobileBreakpoint}px)`).matches;
+    speed = 2;  // Overall speed multiplier (higher value for faster rain)
+    drops = isMobile ? 50 : 150; // Number of drops for mobile vs desktop
+  }
+  
+  // Button text update helper
+  function updateButtonText() {
+    rainToggleButton.innerText = rainPaused ? "RESUME RAIN" : "PAUSE RAIN";
+  }
+  
   // Toggle rain button
   function createToggleRainButton() {
-    const button = document.createElement("button");
-    if (rainPaused) {
-      button.innerText = "START RAIN EFFECT (ANIMATED)";
-    } else {
-      startRain();
-      button.innerText = "PAUSE RAIN"; // Change button text to indicate pause
-    }
-
-    button.style.position = "fixed";
-    button.style.bottom = "10px";
-    button.style.right = "10px";
-    button.style.zIndex = "10"; // Ensure it's above the rain effect
-    button.style.padding = "5px 5px";
-    button.style.backgroundColor = "#1a2b32";
-    button.style.color = "#fff";
-    button.style.fontFamily = "'Tomorrow', sans-serif";
-    button.style.fontWeight = "bold";
-    button.style.border = "none";
-    button.style.cursor = "pointer";
+    rainToggleButton = document.createElement("button"); // Create the button here
+    rainToggleButton.id = "rainToggleButton";
     
-    button.addEventListener("click", () => {
-      
+    // Initialize button text based on rain state
+    if (rainPaused) {
+      rainToggleButton.innerText = "START RAIN EFFECT (ANIMATED)";
+    } else {
+      startRain(); // Call startRain if rain is not paused
+      rainToggleButton.innerText = "PAUSE RAIN"; // Change button text to indicate pause
+    }
+  
+    // Button click handler
+    rainToggleButton.addEventListener("click", () => {
       rainPaused = !rainPaused; // Toggle the paused state
-      
-      if (rainPaused)
-      {
-        button.innerText = "RESUME RAIN"; // Change button text to indicate resume
-      }
-      else
-      {
-        button.innerText = "PAUSE RAIN"; // Change button text to indicate pause
-        
-        if(!rainActive)
-        {
-          startRain()
-        }
+      updateButtonText(); // Update button text
+  
+      if (!rainPaused && !rainActive) {
+        startRain();  // Start rain if it's not active
       }
     });
-    
-    document.body.appendChild(button);
+  
+    document.body.appendChild(rainToggleButton); // Append button once
   }
-
+  
+  // Create a raindrop
   function createRaindrop() {
-    
     const drop = document.createElement("div");
     drop.style.position = "absolute";
-    drop.style.height = "16px";
-    drop.style.width = "2px";
+    drop.style.height = "var(--raindrop-height)";
+    drop.style.width = "var(--raindrop-width)";
     drop.style.backgroundColor = color;
     raindropContainer.appendChild(drop);
+  
     return {
       element: drop,
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
-      speed: 8 + Math.random() * 12, // Much faster raindrops
+      speed: 8 + Math.random() * 12,
     };
   }
   
-  // Update raindrops based on whether rain is paused
+  // Update raindrops position
   function updateRaindrops() {
     if (!rainPaused) {
       raindrops.forEach((drop) => {
@@ -97,28 +82,51 @@
   }
   
   // Start the rain effect
-  function startRain()
-  {
-    // Create the raindrop container
+  function startRain() {
+    if (rainActive) return; // Prevent multiple containers
+  
     rainActive = true;
+  
     raindropContainer = document.createElement("div");
-    raindropContainer.style.position = "fixed";
-    raindropContainer.style.top = "0";
-    raindropContainer.style.left = "0";
-    raindropContainer.style.width = "100%";
-    raindropContainer.style.height = "100%";
-    raindropContainer.style.overflow = "hidden";
-    raindropContainer.style.zIndex = "-1"; // Ensure it is behind content
-    raindropContainer.style.pointerEvents = "none"; // Allow clicks through the container
+    raindropContainer.id = "raindropContainer"; // Add the CSS class by ID
     document.body.appendChild(raindropContainer);
     
-    for (let i = 0; i < drops; i++)
-    {
+    // Create drops
+    for (let i = 0; i < drops; i++) {
       raindrops.push(createRaindrop());
     }
-    
+  
     updateRaindrops();
   }
   
-  window.onload = createToggleRainButton;
+  // Stop the rain effect
+  function stopRain() {
+    if (rainActive) {
+      rainActive = false;
+      raindrops.forEach((drop) => drop.element.remove());
+      raindrops.length = 0; // Clear array directly
+      raindropContainer.remove();
+    }
+  }
+  
+  // Visibility change handler to pause or resume rain
+  function visibilityChangeHandler() {
+    rainPaused = document.hidden || rainPaused;
+    updateButtonText(); // Update button text directly without needing the button reference
+  }
+  
+  // Resize handler for responsive rain settings
+  function resizeHandler() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(updateAnimationSettings, 200); // Ensure debounce on resize
+  }
+  
+  // Initialize the animation settings based on the current screen size
+  updateAnimationSettings();
+  document.addEventListener("DOMContentLoaded", createToggleRainButton); // Button created after DOM is ready
+  
+  // Event listeners for resize and visibility change
+  window.addEventListener("resize", resizeHandler);
+  document.addEventListener("visibilitychange", visibilityChangeHandler);
+  
 // ]]>
