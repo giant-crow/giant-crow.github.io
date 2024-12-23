@@ -34,6 +34,11 @@ html {
   height: 100%;
 }
 
+p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: 'Tomorrow', 'Noto Sans Japanese', sans-serif;
   font-size: 0.95em;
@@ -47,11 +52,6 @@ body {
   box-sizing: border-box;
 }
 
-/* below this line is CSS for the layout */
-
-/* the "container" is what wraps your entire website */
-/* if you want something (like the header) to be Wider than the other elements, you will need to move that div outside of the container */
-
 #container {
   max-width: 800px;
   /* if you change the above value, scroll to the bottom and change the media query according to the comment! */
@@ -64,18 +64,6 @@ body {
   align-items: center;
 }
 
-#underconstruction {
-  margin: 10px;
-  padding: 0px 15px;
-  background: linear-gradient(-45deg, rgba(0, 0, 0, 0) 25%, rgba(246, 204, 14, 0.7) 25%, rgba(246, 204, 14, 0.7) 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 75%, rgba(246, 204, 14, 0.7) 75%, rgba(246, 204, 14, 0.7) 100%);
-  background-size: 20px 20px;
-}
-
-body, p, ul, li {
-  margin: 0;
-  padding: 0;
-}
-
 h1 {
   font-size: 22px;
   padding: 10px;
@@ -86,16 +74,6 @@ h1 {
 a {
   color: #58c4aa;
   font-weight: bold;
-}
-
-#dynamic-link a {
-  color: rgba(246, 204, 14, 0.7);
-  text-decoration: none;
-  transition: color 0.3s ease; /* Smooth transition */
-}
-
-#dynamic-link a:hover {
-  color: rgba(246, 204, 14, 1);
 }
 
 .buttonblur {
@@ -114,6 +92,100 @@ a {
   image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
   -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
 }
+
+/* Dynamic chainlink fence styles */
+
+#underconstruction {
+  margin: 10px;
+  padding: 0px 15px;
+  background: linear-gradient(-45deg, rgb(0, 0, 0) 25%, rgb(176, 148, 16) 25%, rgb(176, 148, 16) 50%, rgb(0, 0, 0) 50%, rgb(0, 0, 0) 75%, rgb(176, 148, 16) 75%, rgb(176, 148, 16) 100%);
+  background-size: 20px 20px;
+}
+
+#dynamic-link a {
+  color: rgb(176, 148, 16);
+  text-decoration: none;
+  transition: color 0.3s ease; /* Smooth transition */
+}
+
+#dynamic-link a:hover {
+  color: rgba(246, 204, 14, 1);
+}
+
+#chain-fence {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 0; /* Will be dynamically adjusted */
+  background: repeating-linear-gradient(45deg, 
+      rgba(40, 60, 60, 0.7) 0, 
+      rgba(40, 60, 60, 0.7) 1px, 
+      transparent 1px, 
+      transparent 15px),
+      repeating-linear-gradient(-45deg, 
+      rgba(40, 60, 60, 0.7) 0, 
+      rgba(40, 60, 60, 0.7) 1px, 
+      transparent 1px, 
+      transparent 15px);
+  background-color: transparent;
+  z-index: -1; /* Place it below other content */
+  pointer-events: none; /* Make it non-interactive */
+}
+
+.fence-post {
+  position: absolute;
+  width: 10px; /* Thickness of the posts */
+  background-color: rgba(40, 60, 60, 1); /* Same color as the chain links */
+  top: 0;
+  bottom: 0;
+}
+
+#post-left {
+  left: 20%; /* Position the left post */
+}
+
+#post-right {
+  right: 20%; /* Position the right post */
+}
+
+/* General poster styles */
+.poster {
+  position: absolute;
+  border: 1px solid black;
+  padding: 10px;
+  z-index: 1; /* Above the chain fence */
+  pointer-events: none; /* Non-interactive */
+
+  /* Flexbox for centering */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Vertical alignment */
+  justify-content: center; /* Horizontal alignment */
+  text-align: center; /* Ensure multi-line text is centered */
+}
+
+/* Specific styles for each poster */
+.concert-poster {
+  width: 130px;
+  height: 160px;
+  color: teal;
+  background: #000;
+  font-family: 'Tomorrow', sans-serif;
+  font-size: 1.3em;
+  top: 60%;
+  left: 20%;
+  transform: rotate(-10deg);
+}
+
+.missing-poster {
+  width: 100px;
+  height: 120px;
+  top: 45%;
+  right: 20%;
+  transform: rotate(5deg);
+}
+
+/* Rain effect styles */
 
 :root {
   --raindrop-width: 1px;
@@ -147,6 +219,12 @@ a {
 
 /* BELOW THIS POINT IS MEDIA QUERY */
 
-/*@media only screen and (max-width: 700px) {
-  
-}*/
+@media only screen and (max-width: 700px) {
+  .fence-post {
+    display: none;
+  }
+
+  .poster {
+    display: none;
+  }
+}

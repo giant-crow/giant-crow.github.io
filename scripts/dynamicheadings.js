@@ -8,9 +8,9 @@
             "GIANT CROWS AT WORK",
             "COME BACK LATER, MAYBE",
             "I SWEAR I'M WORKING ON IT",
-            "QUICK FIVE MINUTE CODING ADVENTURE",
+            "5-MINUTE CODING ADVENTURE",
             "BRB",
-            "IT'LL BE DONE WHEN IT'S DONE",
+            "DONE WHEN IT'S DONE",
             "[LOUD HOLD MUSIC]",
         ];
   
