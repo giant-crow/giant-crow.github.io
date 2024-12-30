@@ -1,65 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Metadata -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" type="image/png" href="/images/favicon.png">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
 
-    <title>giantcrow.monster > UNDER CONSTRUCTION</title>
+  <!-- Page Title -->
+  <title>giantcrow.monster > UNDER CONSTRUCTION</title>
 
-    <link rel="stylesheet" href="/style.css">
-    
-    <script type="text/javascript" src="/scripts/raineffect.js" defer></script>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/style.css">
 
-    <script type="text/javascript" src="/scripts/dynamicheadings.js" defer></script>
+  <!-- Scripts -->
+  <script type="text/javascript" src="/scripts/raineffect.js" defer></script>
+  <script type="text/javascript" src="/scripts/dynamicheadings.js" defer></script>
+  <script type="text/javascript" src="/scripts/dynamicchainfence.js"></script>
 
-    <script type="text/javascript" src="/scripts/dynamicchainfence.js"></script>
-    
-  </head>
-  
-  <body>
-    
-    <div id="container">
+</head>
 
-      <div id="chain-fence">
+<body>
 
-        <div class="fence-post" id="post-left"></div>
-        <div class="fence-post" id="post-right"></div>
+  <!-- Main container -->
+  <div id="container">
 
-        <!--<div class="poster concert-poster">
-          N.E.S.T.<b>CONCERT TONIGHT!</b>
+    <!-- Chain-link fence section -->
+    <div id="chainFence">
+
+      <!-- Left fence post -->
+      <div class="fencePost" id="postLeft">
+        <!-- Missing poster on the left -->
+        <div class="poster missingPoster modifierLeft">
+          <div class="missingText">MISSING</div>
+          <img class="mugshot" src="images/favicon.png" alt="Missing person's photo">
+          CALL XXX-XXXX
         </div>
-        <div class="poster missing-poster">
-          MISSING PERSON<br>Have you seen this face?
-        </div>-->
-      
       </div>
 
-      <div id="underconstruction">
-       
-        <div style="background: #0a1114; text-align: center">
+      <!-- Center fence post -->
+      <div class="fencePost" id="postCentre"></div>
 
-          <h1>
-            <span id="dynamic-heading"></span><br />
-            VISIT <span id="dynamic-link"></span> INSTEAD
-          </h1>
-
+      <!-- Right fence post -->
+      <div class="fencePost" id="postRight">
+        <!-- Missing poster on the right -->
+        <div class="poster missingPoster modifierRight">
+          <div class="missingText">MISSING</div>
+          <img class="mugshot" src="images/favicon.png" alt="Missing person's photo">
+          CALL XXX-XXXX
         </div>
-        
       </div>
 
-      <div style="margin-top: 5px">
-
-        <a href="https://discourse.auldnoir.org/" target="_blank" rel="noopener noreferrer">
-          <img class="buttonblur" src="/images/auldnoir-88x31.gif" title="Auldnoir - a forum for cool peeps" alt="Auldnoir button">
-        </a>
-
-      </div>
-      
     </div>
-    
-  </body>
+
+    <!-- "Under Construction" sign -->
+    <div id="ucStripedBackground">
+      <div id="ucTextBox">
+        <!-- Dynamic heading and link -->
+        <h1>
+          <span id="dynamic-heading"></span><br />
+          TRY <span id="ucDynamicLink"></span> INSTEAD
+        </h1>
+      </div>
+    </div>
+
+    <!-- Auldnoir flyer -->
+    <div>
+      <a href="https://discourse.auldnoir.org/" target="_blank" rel="noopener noreferrer">
+        <div class="poster auldnoirPoster">
+          VISIT SUNNY
+          <img src="/images/auldnoir-84x27.gif" title="Auldnoir - a forum for cool peeps" alt="Auldnoir button">
+        </div>
+      </a>
+    </div>
+
+  </div>
+  
+</body>
+
 </html>

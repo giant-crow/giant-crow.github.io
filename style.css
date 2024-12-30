@@ -1,4 +1,4 @@
-/*fonts*/
+/* == Fonts == */
 
 @font-face {
   font-family: Tomorrow;
@@ -28,23 +28,19 @@
   font-weight: bold;
 }
 
-/*layout css*/
+
+/* == Layout styles == */
 
 html {
   height: 100%;
-}
-
-p, ul, li {
-  margin: 0;
-  padding: 0;
 }
 
 body {
   font-family: 'Tomorrow', 'Noto Sans Japanese', sans-serif;
   font-size: 0.95em;
   margin: 0;
-  background-color: #0a1114;
-  color: #e2ede6;
+  background-color: rgb(10, 17, 20);
+  color: rgb(226, 237, 230);
   height: 100%;
 }
 
@@ -52,11 +48,25 @@ body {
   box-sizing: border-box;
 }
 
+p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 22px;
+  padding: 10px;
+  color: rgb(226, 237, 230);
+  text-transform: uppercase;
+}
+
 #container {
-  max-width: 800px;
-  /* if you change the above value, scroll to the bottom and change the media query according to the comment! */
-  margin: auto;
-  /* this centers the entire page */
+  max-width: 800px; /* If you change this value, remember to change the media query */
+  margin: auto; /* Centers the entire page */
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -64,55 +74,50 @@ body {
   align-items: center;
 }
 
-h1 {
-  font-size: 22px;
-  padding: 10px;
-  color: #fff;
-  text-transform: uppercase;
-}
 
-a {
-  color: #58c4aa;
-  font-weight: bold;
-}
+/* == Button styles == */
 
-.buttonblur {
+.buttonBlur, .buttonCrisp {
   width: 88px; 
   height: 31px;
 }
 
-.buttoncrisp {
-  width: 88px; 
-  height: 31px;
-  image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
-  image-rendering: -moz-crisp-edges;          /* Firefox                        */
-  image-rendering: -o-crisp-edges;            /* Opera                          */
-  image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
-  image-rendering: pixelated;                 /* Universal support since 2021   */
-  image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
-  -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+.buttonCrisp {
+  image-rendering: pixelated; /* Universal support since 2021 */
 }
 
-/* Dynamic chainlink fence styles */
 
-#underconstruction {
+/* == Elements == */
+
+/* = Under construction sign = */
+
+#ucStripedBackground {
   margin: 10px;
   padding: 0px 15px;
-  background: linear-gradient(-45deg, rgb(0, 0, 0) 25%, rgb(176, 148, 16) 25%, rgb(176, 148, 16) 50%, rgb(0, 0, 0) 50%, rgb(0, 0, 0) 75%, rgb(176, 148, 16) 75%, rgb(176, 148, 16) 100%);
+  background: linear-gradient(-45deg,
+      rgb(0, 0, 0) 25%,
+      rgb(246, 204, 14) 25%,
+      rgb(246, 204, 14) 50%,
+      rgb(0, 0, 0) 50%,
+      rgb(0, 0, 0) 75%,
+      rgb(246, 204, 14) 75%,
+      rgb(246, 204, 14) 100%);
   background-size: 20px 20px;
 }
 
-#dynamic-link a {
-  color: rgb(176, 148, 16);
-  text-decoration: none;
-  transition: color 0.3s ease; /* Smooth transition */
+#ucTextBox {
+  background: #0a1114;
+  text-align: center;
 }
 
-#dynamic-link a:hover {
-  color: rgba(246, 204, 14, 1);
+#ucDynamicLink a {
+  color: rgb(246, 204, 14);
 }
 
-#chain-fence {
+
+/* = Dynamic chainlink fence = */
+
+#chainFence {
   position: absolute;
   left: 0;
   width: 100%;
@@ -128,33 +133,39 @@ a {
       transparent 1px, 
       transparent 15px);
   background-color: transparent;
-  z-index: -1; /* Place it below other content */
-  pointer-events: none; /* Make it non-interactive */
+  z-index: -1; /* Places below other content */
 }
 
-.fence-post {
+.fencePost {
   position: absolute;
-  width: 10px; /* Thickness of the posts */
-  background-color: rgba(40, 60, 60, 1); /* Same color as the chain links */
+  width: 15px; /* Thickness of the posts */
+  background-color: rgb(40, 60, 60);
   top: 0;
   bottom: 0;
+  display: flex; /* Enable flexbox for the post */
+  justify-content: center;
+  align-items: center; /* Center the poster inside the fence post */
 }
 
-#post-left {
-  left: 20%; /* Position the left post */
+#postLeft {
+  left: 15%;
 }
 
-#post-right {
-  right: 20%; /* Position the right post */
+#postCentre {
+  left: 50%; /* Position the left edge at the center */
+  transform: translateX(-50%); /* Move center of element to center of page */
 }
 
-/* General poster styles */
+#postRight {
+  right: 15%;
+}
+
+
+/* = Poster styles = */
+
 .poster {
-  position: absolute;
-  border: 1px solid black;
-  padding: 10px;
   z-index: 1; /* Above the chain fence */
-  pointer-events: none; /* Non-interactive */
+  font-family: 'Tomorrow', sans-serif;
 
   /* Flexbox for centering */
   display: flex;
@@ -164,28 +175,61 @@ a {
   text-align: center; /* Ensure multi-line text is centered */
 }
 
-/* Specific styles for each poster */
-.concert-poster {
-  width: 130px;
-  height: 160px;
-  color: teal;
-  background: #000;
-  font-family: 'Tomorrow', sans-serif;
-  font-size: 1.3em;
-  top: 60%;
-  left: 20%;
-  transform: rotate(-10deg);
-}
 
-.missing-poster {
-  width: 100px;
+/* = Auldnoir poster = */
+
+.auldnoirPoster {
+  width: 95px;
   height: 120px;
-  top: 45%;
-  right: 20%;
-  transform: rotate(5deg);
+  margin: 0.5em;
+  color: rgb(246, 204, 14);
+  background: rgb(0, 43, 54);
+  font-size: 1.2em;
+  font-weight: bold;
+  transform: rotate(2deg);
+  z-index: 10;
 }
 
-/* Rain effect styles */
+.auldnoirPoster a {
+  z-index: 3; /* Ensure it is clickable */
+  pointer-events: auto; /* Enable clicking */
+}
+
+
+/* = Missing posters = */
+
+.missingPoster {
+  position: absolute;
+  width: 110px;
+  height: 155px;
+  background: rgb(226, 237, 230);
+  color: rgb(0, 0, 0);
+  font-size: 0.8em;
+}
+
+.modifierLeft {
+  transform: rotate(3deg);
+  margin-top: 180px;
+}
+
+.modifierRight {
+  transform: rotate(-4deg);
+  margin-top: 70px;
+}
+
+.missingText {
+  font-weight: bold;
+  font-size: 1.6em;
+}
+
+.mugshot {
+  width: 85%;
+  height: auto;
+  margin: 5px 0px;
+}
+
+
+/* == Rain effect == */
 
 :root {
   --raindrop-width: 1px;
@@ -198,8 +242,8 @@ a {
   right: 10px;
   z-index: 10;
   padding: 5px 5px;
-  background-color: #1a2b32;
-  color: #fff;
+  background-color: rgb(26, 43, 50);
+  color: rgb(226, 237, 230);
   font-family: 'Tomorrow', sans-serif;
   font-weight: bold;
   border: none;
@@ -213,18 +257,15 @@ a {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: -1; /* Ensure it stays behind the content */
+  z-index: -2; /* Ensure it stays behind the content */
   pointer-events: none; /* Allow clicks to pass through */
 }
 
-/* BELOW THIS POINT IS MEDIA QUERY */
 
-@media only screen and (max-width: 700px) {
-  .fence-post {
-    display: none;
-  }
+/* == Media query == */
 
-  .poster {
+@media only screen and (max-width: 800px) {
+  #postRight, #postLeft {
     display: none;
   }
 }

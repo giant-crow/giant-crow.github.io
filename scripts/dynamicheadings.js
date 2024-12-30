@@ -55,7 +55,7 @@
         }
 
         // Update the link
-        const h1Element = document.querySelector('#dynamic-link');
+        const h1Element = document.querySelector('#ucDynamicLink');
         if (h1Element) {
             const link = createLink(randomLink.name, randomLink.url);
             h1Element.innerHTML = ''; // Clear previous content
