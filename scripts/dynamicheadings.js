@@ -6,12 +6,13 @@
         // List of options
         const options = [
             "GIANT CROWS AT WORK",
-            "COME BACK LATER, MAYBE",
+            "COME BACK LATER, MAYBE?",
             "I SWEAR I'M WORKING ON IT",
-            "5-MINUTE CODING ADVENTURE",
+            "5 MIN CODING ADVENTURE",
             "BRB",
             "DONE WHEN IT'S DONE",
             "[LOUD HOLD MUSIC]",
+            "NO ENTRY"
         ];
   
         // Select a random option
