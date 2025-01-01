@@ -1,5 +1,3 @@
-// <![CDATA[
-
 document.addEventListener('DOMContentLoaded', () => {
     const underConstruction = document.getElementById('ucStripedBackground');
     const chainFence = document.getElementById('chainFence');
@@ -32,5 +30,3 @@ document.addEventListener('DOMContentLoaded', () => {
     updateFencePosition();
     window.addEventListener('resize', updateFencePosition);
 });
-
-// ]]>
