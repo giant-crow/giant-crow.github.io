@@ -64,8 +64,8 @@ h1 {
   text-transform: uppercase;
 }
 
-#container {
-  max-width: 800px; /* If you change this value, remember to change the media query */
+.container {
+  max-width: 750px; /* If you change this value, remember to change the media query */
   margin: auto; /* Centers the entire page */
   height: 100%;
   display: flex;
@@ -127,7 +127,7 @@ h1 {
 
 .fencePost {
   position: absolute;
-  width: 15px; /* Thickness of the posts */
+  width: 12px; /* Thickness of the posts */
   background-color: rgb(40, 60, 60);
   top: 0;
   bottom: 0;
@@ -155,22 +155,22 @@ h1 {
   right: -15px;
 }
 
-#postLeft {
+.postLeft {
   left: 15%;
 }
 
-#postCentre {
+.postCentre {
   left: 50%; /* Position the left edge at the center */
   transform: translateX(-50%); /* Move center of element to center of page */
 }
 
-#postRight {
+.postRight {
   right: 15%;
 }
 
 
 /* = Button stack styles = */
-#buttonStack {
+.buttonStack {
   background: rgb(40, 60, 60);
   display: flex;
   flex-direction: column;
@@ -211,18 +211,28 @@ h1 {
   height: 120px;
   margin: 0.5em;
   color: rgb(246, 204, 14);
-  background: rgb(0, 43, 54);
+  background-color: rgb(0, 43, 54);
   font-size: 1.2em;
   font-weight: bold;
   transform: rotate(2deg);
   z-index: 1;
 }
 
+.auldnoirPoster::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url('/images/creased-paper.png') no-repeat center center;
+  background-size: cover;
+  pointer-events: none;
+  opacity: 1;
+}
+
 .auldnoirPoster a {
   z-index: 2; /* Ensure it is clickable */
   pointer-events: auto; /* Enable clicking */
 }
-
 
 /* = Missing posters = */
 
@@ -233,7 +243,29 @@ h1 {
   background: rgb(226, 237, 230);
   color: rgb(0, 0, 0);
   font-size: 0.8em;
-  transform: rotate(-3deg);
+}
+
+.missingPoster::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url('/images/folded-paper.png') no-repeat center center;
+  background-size: cover;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.modifierTop {
+  bottom: 55%;
+  left: -3.5em;
+  transform: rotate(-2deg);
+}
+
+.modifierBottom {
+  bottom: 17%;
+  right: -3.5em;
+  transform: rotate(3deg);
 }
 
 .missingText {
@@ -283,8 +315,8 @@ h1 {
 
 /* == Media query == */
 
-@media only screen and (max-width: 800px) {
-  #postRight, #postLeft {
+@media only screen and (max-width: 750px) {
+  .postRight, .postLeft {
     display: none;
   }
 }
